@@ -18,6 +18,9 @@
 		201AA723242956B000FCBF7C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201AA722242956B000FCBF7C /* Service.swift */; };
 		201AA72824295A6900FCBF7C /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201AA72724295A6900FCBF7C /* Photo.swift */; };
 		201AA72B24295CFF00FCBF7C /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201AA72A24295CFF00FCBF7C /* Util.swift */; };
+		201AA72E242A72C800FCBF7C /* SearchPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201AA72D242A72C800FCBF7C /* SearchPhotoViewController.swift */; };
+		201AA730242A731800FCBF7C /* SearchPhotoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201AA72F242A731800FCBF7C /* SearchPhotoPresenter.swift */; };
+		201AA732242A733F00FCBF7C /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 201AA731242A733F00FCBF7C /* Search.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		201AA722242956B000FCBF7C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		201AA72724295A6900FCBF7C /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		201AA72A24295CFF00FCBF7C /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		201AA72D242A72C800FCBF7C /* SearchPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoViewController.swift; sourceTree = "<group>"; };
+		201AA72F242A731800FCBF7C /* SearchPhotoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoPresenter.swift; sourceTree = "<group>"; };
+		201AA731242A733F00FCBF7C /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		2E7245D030C531ABC65AF048 /* Pods-Gallery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gallery.debug.xcconfig"; path = "Target Support Files/Pods-Gallery/Pods-Gallery.debug.xcconfig"; sourceTree = "<group>"; };
 		2EBEFC1A8757CAB698B0421D /* Pods_Gallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B069F6C3790271E17C34688 /* Pods-Gallery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gallery.release.xcconfig"; path = "Target Support Files/Pods-Gallery/Pods-Gallery.release.xcconfig"; sourceTree = "<group>"; };
@@ -92,6 +98,7 @@
 		201AA6FE24294D8A00FCBF7C /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
+				201AA72C242A728A00FCBF7C /* Search */,
 				201AA72924295CEC00FCBF7C /* Util */,
 				201AA72624295A1B00FCBF7C /* Models */,
 				201AA721242955F600FCBF7C /* Service */,
@@ -137,6 +144,16 @@
 				201AA72A24295CFF00FCBF7C /* Util.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		201AA72C242A728A00FCBF7C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				201AA72D242A72C800FCBF7C /* SearchPhotoViewController.swift */,
+				201AA72F242A731800FCBF7C /* SearchPhotoPresenter.swift */,
+				201AA731242A733F00FCBF7C /* Search.storyboard */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		349F92A11C710B2DA7FD46C4 /* Pods */ = {
@@ -241,6 +258,7 @@
 			files = (
 				201AA70C24294D8B00FCBF7C /* LaunchScreen.storyboard in Resources */,
 				201AA70924294D8B00FCBF7C /* Assets.xcassets in Resources */,
+				201AA732242A733F00FCBF7C /* Search.storyboard in Resources */,
 				201AA70724294D8A00FCBF7C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,7 +324,9 @@
 				201AA70424294D8A00FCBF7C /* ViewController.swift in Sources */,
 				201AA723242956B000FCBF7C /* Service.swift in Sources */,
 				201AA70024294D8A00FCBF7C /* AppDelegate.swift in Sources */,
+				201AA730242A731800FCBF7C /* SearchPhotoPresenter.swift in Sources */,
 				201AA70224294D8A00FCBF7C /* SceneDelegate.swift in Sources */,
+				201AA72E242A72C800FCBF7C /* SearchPhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
