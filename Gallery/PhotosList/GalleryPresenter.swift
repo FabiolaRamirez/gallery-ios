@@ -1,5 +1,5 @@
 //
-//  SearchPhotoPresenter.swift
+//  GalleryPresenter.swift
 //  Gallery
 //
 //  Created by Fabiola Ramirez on 3/24/20.
