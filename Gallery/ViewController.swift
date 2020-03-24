@@ -17,8 +17,8 @@ class ViewController: UIViewController {
     }
 
     func getList() {
-        Service.sharedInstance.fetchPhotos(success: {(response) in
-            print("photosList: \(response)")
+        Service.sharedInstance.fetchPhotos(success: {(photoResponse: [Photo]) in
+            print("photosList: \(photoResponse)")
         }, failure: {(messaje: ErrorMessage) in
             print("error: \(messaje)")
         })
