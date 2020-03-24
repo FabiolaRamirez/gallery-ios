@@ -16,7 +16,7 @@ struct Service {
     
     let baseURL = URL(string: "https://api.flickr.com")!
     
-    func fetchPhotos(success: @escaping(_ photoList: PhotosResponse) -> (), failure: @escaping(_ errorResponse: ErrorMessage)-> ()){
+    func fetchPhotos(success: @escaping(_ photoList: [Photo]) -> (), failure: @escaping(_ errorResponse: ErrorMessage)-> ()){
         
         
         var photosURL = baseURL.appendingPathComponent("services/rest")
@@ -48,8 +48,8 @@ struct Service {
                 return
             }
             
-            if let data = data, let cards = try? jsonDecoder.decode(PhotosResponse.self, from: data) {
-                success(cards)
+            if let data = data, let photos = try? jsonDecoder.decode([Photo].self, from: data) {
+                success(photos)
             }
             
         }

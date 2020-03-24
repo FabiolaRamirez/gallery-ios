@@ -19,7 +19,7 @@ struct PhotoResponse: Decodable {
 
 struct Photo: Decodable {
     var title: String?
-    var ispublic: String?
-    var isfriend: String?
-    var isfamily: String?
+    var ispublic: Int?
+    var isfriend: Int?
+    var isfamily: Int?
 }
