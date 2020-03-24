@@ -14,6 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         getList()
+        getSizes()
     }
 
     func getList() {
@@ -23,6 +24,14 @@ class ViewController: UIViewController {
             print("error: \(messaje)")
         })
     }
+    
+    func getSizes() {
+        Service.sharedInstance.getSizes(photoId: "31456463045", success: {(response: SizesResponse) in
+               print("sizes response: \(response)")
+           }, failure: {(messaje: ErrorMessage) in
+               print("error: \(messaje)")
+           })
+       }
 
 }
 

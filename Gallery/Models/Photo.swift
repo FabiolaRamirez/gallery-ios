@@ -23,4 +23,18 @@ struct Photo: Decodable {
     var ispublic: Int?
     var isfriend: Int?
     var isfamily: Int?
+    var sizes: SizesResponse?
+}
+
+struct SizesResponse: Decodable {
+    var sizes: SizeResponse?
+}
+
+struct SizeResponse: Decodable {
+    var size: [ExtraData]?
+}
+
+struct ExtraData: Decodable {
+    var label: String?
+    var source: String?
 }
