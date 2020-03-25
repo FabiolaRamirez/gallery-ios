@@ -11,39 +11,36 @@ import UIKit
 class GalleryViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var collectionViewFlowLayout: UICollectionViewFlowLayout!
     let cellIdentifier = "photoCellId"
     var photos: [Photo] = []
+    var galleryPresenter: GalleryPresenterDelegate?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        getList()
+        setup()
         setupCells()
         setupCollectionViewItenSize()
     }
     
-    func getList() {
-        Service.sharedInstance.fetchPhotos(success: {(response: [Photo]) in
-            print("photosList: \(response)")
-            DispatchQueue.main.async {
-            self.photos = response
-            self.collectionView.reloadData()
-            }
-        }, failure: {(messaje: ErrorMessage) in
-            print("error: \(messaje)")
-        })
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchPhotos()
+    }
+    
+    func fetchPhotos() {
+        galleryPresenter?.fetchPhotos()
     }
     
     func getSizes(_ row: Int, cell: PhotoCollectionViewCell) {
-        var photo = self.photos[row]
-        Service.sharedInstance.getSizes(photoId: photo.id!, success: {(response) in
-            print("sizes response: \(response)")
-            photo.sizes = response
-            cell.initWithData(photo)
-        }, failure: {(messaje: ErrorMessage) in
-            print("error: \(messaje)")
-            cell.initWithData(photo)
-        })
+        galleryPresenter?.getSizes(row, cell: cell, photos: self.photos)
+    }
+    
+    func setup() {
+        self.navigationItem.title = "Gallery".localized
+        self.galleryPresenter = GalleryPresenter(view: self)
     }
     
     func setupCells() {
@@ -87,7 +84,28 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         return cell
     }
     
+}
+
+extension GalleryViewController: GalleryProtocol {
     
+    func successfulFetchPhotos(photos: [Photo]) {
+        DispatchQueue.main.async {
+        self.activityIndicator.stopAnimating()
+        self.photos = photos
+        self.collectionView.reloadData()
+        }
+    }
     
+    func failureFetchPhotos(message: String) {
+        DispatchQueue.main.async {
+        self.activityIndicator.stopAnimating()
+            print("wwwwwww: \(message)")
+            self.showSimpleAlert(title: "", message: message)
+        }
+    }
+    
+    func updateUIWhenTaskstarts() {
+        self.activityIndicator.startAnimating()
+    }
     
 }

@@ -14,20 +14,20 @@ struct Service {
     
     static let sharedInstance = Service()
     
-    let baseURL = URL(string: "https://api.flickr.com")!
+    let baseURL = URL(string: URLs.BaseUrl)!
     
     func fetchPhotos(success: @escaping(_ photos: [Photo]) -> (), failure: @escaping(_ errorResponse: ErrorMessage)-> ()){
         
         
-        var photosURL = baseURL.appendingPathComponent("services/rest")
+        var photosURL = baseURL.appendingPathComponent(URLs.Path)
         
         let query: [String: String] = [
-            "method": "flickr.photos.search",
-            "api_key": "f9cc014fa76b098f9e82f1c288379ea1",
-            "tags": "kitten",
-            "page": "1",
-            "format": "json",
-            "nojsoncallback": "1"
+            ParameterKeys.method: ParameterKeys.methodSearch,
+            ParameterKeys.api_key: ApiValue.ApiKey,
+            ParameterKeys.tags: ParameterKeys.tagKitten,
+            ParameterKeys.page: "1",
+            ParameterKeys.format: ParameterKeys.json,
+            ParameterKeys.nojsoncallback: "1"
         ]
         
         photosURL = photosURL.withQueries(query)!
@@ -58,7 +58,6 @@ struct Service {
             
             success(response.photos?.photo ?? [])
             
-            
         }
         
         task.resume()
@@ -68,14 +67,14 @@ struct Service {
     func getSizes(photoId: String, success: @escaping(_ sizes: SizesResponse) -> (), failure: @escaping(_ errorResponse: ErrorMessage)-> ()){
         
         
-        var sizesURL = baseURL.appendingPathComponent("services/rest")
+        var sizesURL = baseURL.appendingPathComponent(URLs.Path)
         
         let query: [String: String] = [
-            "method": "flickr.photos.getSizes",
-            "api_key": "f9cc014fa76b098f9e82f1c288379ea1",
-            "photo_id": "\(photoId)",
-            "format": "json",
-            "nojsoncallback": "1"
+            ParameterKeys.method: ParameterKeys.methodSizes,
+            ParameterKeys.api_key: ApiValue.ApiKey,
+            ParameterKeys.photo_id: "\(photoId)",
+            ParameterKeys.format: ParameterKeys.json,
+            ParameterKeys.nojsoncallback: "1"
         ]
         
         sizesURL = sizesURL.withQueries(query)!
