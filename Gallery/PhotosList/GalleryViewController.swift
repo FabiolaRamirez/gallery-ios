@@ -18,7 +18,6 @@ class GalleryViewController: UIViewController {
         super.viewDidLoad()
 
         getList()
-        getSizes()
         setupCells()
         setupCollectionViewItenSize()
     }
@@ -35,13 +34,17 @@ class GalleryViewController: UIViewController {
         })
     }
     
-    func getSizes() {
-        Service.sharedInstance.getSizes(photoId: "31456463045", success: {(response: SizesResponse) in
-               print("sizes response: \(response)")
-           }, failure: {(messaje: ErrorMessage) in
-               print("error: \(messaje)")
-           })
-       }
+    func getSizes(_ row: Int, cell: PhotoCollectionViewCell) {
+        var photo = self.photos[row]
+        Service.sharedInstance.getSizes(photoId: photo.id!, success: {(response) in
+            print("sizes response: \(response)")
+            photo.sizes = response
+            cell.initWithData(photo)
+        }, failure: {(messaje: ErrorMessage) in
+            print("error: \(messaje)")
+            cell.initWithData(photo)
+        })
+    }
     
     func setupCells() {
         let nib = UINib(nibName: "PhotoCollectionViewCell", bundle: nil)
@@ -76,10 +79,11 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("++++++++++++++++ \(indexPath.row)")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! PhotoCollectionViewCell
-        //var photo = Photo()
         let photo = photos[indexPath.row]
         cell.initWithData(photo)
+        getSizes(indexPath.row, cell: cell)
         return cell
     }
     

@@ -103,8 +103,9 @@ struct Service {
                 failure(.unableToParse)
                 return
             }
-            
-            success(response)
+            DispatchQueue.main.async {
+                success(response)
+            }
             
         }
         

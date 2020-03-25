@@ -16,45 +16,20 @@
                 <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZWF-Cy-ElF">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q5M-va-4lk">
-                                <rect key="frame" x="20" y="46" width="160" height="134"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Niw-iR-SED">
-                                <rect key="frame" x="8" y="17" width="184" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Mcm-La-FI1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Niw-iR-SED" secondAttribute="trailing" constant="8" id="5Xb-TH-1Ck"/>
-                            <constraint firstItem="q5M-va-4lk" firstAttribute="leading" secondItem="ZWF-Cy-ElF" secondAttribute="leading" constant="20" symbolic="YES" id="BT7-fl-4Hr"/>
-                            <constraint firstItem="Niw-iR-SED" firstAttribute="leading" secondItem="ZWF-Cy-ElF" secondAttribute="leading" constant="8" id="FEn-cU-KSE"/>
-                            <constraint firstAttribute="bottom" secondItem="q5M-va-4lk" secondAttribute="bottom" constant="20" symbolic="YES" id="X80-u4-BHx"/>
-                            <constraint firstItem="Niw-iR-SED" firstAttribute="top" secondItem="ZWF-Cy-ElF" secondAttribute="top" constant="17" id="tdW-Cr-mNg"/>
-                            <constraint firstItem="q5M-va-4lk" firstAttribute="top" secondItem="Niw-iR-SED" secondAttribute="bottom" constant="8" id="tsb-Ac-1Ej"/>
-                            <constraint firstAttribute="trailing" secondItem="q5M-va-4lk" secondAttribute="trailing" constant="20" symbolic="YES" id="tsf-0N-cBf"/>
-                        </constraints>
-                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q5M-va-4lk">
+                        <rect key="frame" x="8" y="8" width="184" height="184"/>
+                    </imageView>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="ZWF-Cy-ElF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="bmh-bN-RgT"/>
-                <constraint firstItem="ZWF-Cy-ElF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="dWg-3t-qby"/>
-                <constraint firstAttribute="bottom" secondItem="ZWF-Cy-ElF" secondAttribute="bottom" id="uYv-SR-AeE"/>
-                <constraint firstAttribute="trailing" secondItem="ZWF-Cy-ElF" secondAttribute="trailing" id="yHU-7G-V0a"/>
+                <constraint firstAttribute="bottom" secondItem="q5M-va-4lk" secondAttribute="bottom" constant="8" id="5SX-cG-cVn"/>
+                <constraint firstAttribute="trailing" secondItem="q5M-va-4lk" secondAttribute="trailing" constant="8" id="DJw-aK-TO6"/>
+                <constraint firstItem="q5M-va-4lk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="mMw-MC-4nI"/>
+                <constraint firstItem="q5M-va-4lk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="nrx-9D-7IU"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
                 <outlet property="photoImageView" destination="q5M-va-4lk" id="lva-nx-Qbf"/>
-                <outlet property="titleLabel" destination="Niw-iR-SED" id="Rbr-fH-CJi"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="134.59821428571428"/>
         </collectionViewCell>

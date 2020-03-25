@@ -10,8 +10,7 @@ import UIKit
 import SDWebImage
 
 class PhotoCollectionViewCell: UICollectionViewCell {
-    
-    @IBOutlet weak var titleLabel: UILabel!
+
     @IBOutlet weak var photoImageView: UIImageView!
     
     override func awakeFromNib() {
@@ -20,10 +19,11 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     }
     
     func initWithData(_ photo: Photo) {
-        titleLabel.text = "title"
-        //if let url = photo.source {
-            photoImageView.sd_setImage(with: URL(string: "https://live.staticflickr.com/5800/31456463045_5a0af4ddc8_q.jpg"), placeholderImage: UIImage(named: "notFound"))
-        //}
+        if let imageUrl = photo.sizes?.sizes?.size?[0].source {
+            photoImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "notFound"))
+        } else {
+            photoImageView.image = UIImage(named: "notFound")
+        }
     }
     
 }
