@@ -29,7 +29,7 @@ struct GalleryPresenter: GalleryPresenterDelegate {
     
     func fetchPhotos() {
         view?.updateUIWhenTaskstarts()
-        Service.sharedInstance.fetchPhotos(success: {(response: [Photo]) in
+        Service.shared.fetchPhotos(success: {(response: [Photo]) in
             self.view?.successfulFetchPhotos(photos: response)
         }, failure: {(error: ErrorMessage) in
             self.view?.failureFetchPhotos(message: error.message)
@@ -38,7 +38,7 @@ struct GalleryPresenter: GalleryPresenterDelegate {
     
     func getSizes(_ row: Int, cell: PhotoCollectionViewCell, photos: [Photo]) {
         var photo = photos[row]
-        Service.sharedInstance.getSizes(photoId: photo.id!, success: {(response) in
+        Service.shared.getSizes(photoId: photo.id!, success: {(response) in
             photo.sizes = response
             cell.initWithData(photo)
         }, failure: {(error: ErrorMessage) in

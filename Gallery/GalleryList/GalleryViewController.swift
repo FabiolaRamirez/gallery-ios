@@ -22,12 +22,8 @@ class GalleryViewController: UIViewController {
         super.viewDidLoad()
         setup()
         setupCells()
-        setupCollectionViewItenSize()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         fetchPhotos()
+        setupCollectionViewItenSize()
     }
     
     func fetchPhotos() {
@@ -82,6 +78,17 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         cell.initWithData(photo)
         getSizes(indexPath.row, cell: cell)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let photo = photos[indexPath.row]
+        showPhotoDetail(photo: photo)
+    }
+    
+    func showPhotoDetail(photo: Photo) {
+        let vc: GalleryDetailViewController = UIViewController.instantiateViewController(storyBoard: "Gallery", identifier: "galleryDetailViewController") as! GalleryDetailViewController
+        vc.photo = photo
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
 }

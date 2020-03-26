@@ -12,9 +12,10 @@ import UIKit
 
 struct Service {
     
-    static let sharedInstance = Service()
+    static var shared = Service()
     
     let baseURL = URL(string: URLs.BaseUrl)!
+    var photos: [Photo]?
     
     func fetchPhotos(success: @escaping(_ photos: [Photo]) -> (), failure: @escaping(_ errorResponse: ErrorMessage)-> ()){
         
@@ -56,6 +57,7 @@ struct Service {
                 return
             }
             
+            self.photos = response.photos?.photo ?? []
             success(response.photos?.photo ?? [])
             
         }
