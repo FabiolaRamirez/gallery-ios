@@ -1,11 +1,18 @@
 # Gallery iOS
 
-# This app uses Flickr API services.
-# User can search not only with tag kitten but also with others like dogs, rabbits, and so on.
+A photo gallery iOS application. The user can search not only with tag kitten but also with others like dogs, rabbits, and so on.
 
-# install Cocoapods
-# pod install
-# Xcode version 11.3.1
-# Swift 5
-# MVP 
+- This app uses Flickr API
+- MVP
+- Xcode 11.3.1
+- Swift 5.1
+
+Before openning the project:
+
+- Install [Cocoapods](https://cocoapods.org/)
+- `pod install`
+
+> Fabiola Ramirez [fabiolaramirez07@gmail.com](mailto:fabiolaramirez07@gmail.com)
+
+ 
 
