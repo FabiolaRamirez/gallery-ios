@@ -19,7 +19,8 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     }
     
     func initWithData(_ photo: Photo) {
-        if let imageUrl = photo.sizes?.sizes?.size?[0].source {
+        let size = photo.sizes?.sizes?.size?.filter({$0.label == "Large Square"})
+        if let imageUrl = size?[0].source {
             photoImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "notFound"))
         } else {
             photoImageView.image = UIImage(named: "notFound")
