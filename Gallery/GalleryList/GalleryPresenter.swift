@@ -40,9 +40,9 @@ struct GalleryPresenter: GalleryPresenterDelegate {
         let photo = Service.shared.photos[row]
         Service.shared.getSizes(photoId: photo.id!, success: {(response) in
             Service.shared.photos[row].sizes = response
-            cell.initWithData(photo)
+            cell.initWithData(Service.shared.photos[row])
         }, failure: {(error: ErrorMessage) in
-            cell.initWithData(photo)
+            cell.initWithData(Service.shared.photos[row])
         })
     }
     
