@@ -78,7 +78,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("++++++++++++++++ \(indexPath.row)")
+        print(" \(indexPath.row)")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! PhotoCollectionViewCell
         let photo = Service.shared.photos[indexPath.row]
         cell.initWithData(photo)
@@ -102,7 +102,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         let contentHeight = scrollView.contentSize.height
         
         if (offsetY > contentHeight - scrollView.frame.height * 4) && !isLoading {
-            print("load moree.................")
+            print("Loading more..")
             Service.shared.page += 1
             isLoading = true
             galleryPresenter?.fetchPhotos()
@@ -124,7 +124,6 @@ extension GalleryViewController: GalleryProtocol {
     func failureFetchPhotos(message: String) {
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
-            print("wwwwwww: \(message)")
             self.showSimpleAlert(title: "", message: message)
         }
     }

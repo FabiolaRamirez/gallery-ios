@@ -12,24 +12,27 @@ import SDWebImage
 
 class GalleryDetailViewController: UIViewController {
     
-    
-    @IBOutlet weak var photoImageView: UIImageView!
-    
     var photo: Photo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("photooo: \(photo)")
-        let size = photo?.sizes?.sizes?.size?.filter({$0.label == "Large"})
-        print("size: \(size)")
-        if let imageUrl = size?[0].source {
-            photoImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "notFound"))
-        } else {
-            photoImageView.image = UIImage(named: "notFound")
-        }
-        
-        
+        setup()
     }
     
+    func setup() {
+        let photoView = PhotoView()
+        view.addSubview(photoView)
+        photoView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        let size = photo?.sizes?.sizes?.size?.filter({$0.label == "Large"})
+        if let imageUrl = size?[0].source {
+            photoView.photoImageView.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(named: "notFound"))
+        } else {
+            photoView.photoImageView.image = UIImage(named: "notFound")
+        }
+        
+    }
     
 }

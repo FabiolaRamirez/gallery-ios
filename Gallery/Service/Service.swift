@@ -20,7 +20,7 @@ struct Service {
     var query: String?
     
     func fetchPhotos(success: @escaping(_ photos: [Photo]) -> (), failure: @escaping(_ errorResponse: ErrorMessage)-> ()){
-    
+        
         var photosURL = baseURL.appendingPathComponent(URLs.Path)
         
         let query: [String: String] = [
