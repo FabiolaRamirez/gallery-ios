@@ -15,7 +15,7 @@ class GalleryViewController: UIViewController {
     var collectionViewFlowLayout: UICollectionViewFlowLayout!
     let cellIdentifier = "photoCellId"
     var galleryPresenter: GalleryPresenterDelegate?
-    
+    var isLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,7 @@ class GalleryViewController: UIViewController {
     }
     
     func fetchPhotos() {
+        isLoading = true
         galleryPresenter?.fetchPhotos()
     }
     
@@ -90,14 +91,26 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         self.navigationController?.pushViewController(vc, animated: false)
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+
+        if (offsetY > contentHeight - scrollView.frame.height * 4) && !isLoading {
+            print("load moree.................")
+            Service.shared.page += 1
+            isLoading = true
+            galleryPresenter?.fetchPhotos()
+        }
+    }
 }
 
 extension GalleryViewController: GalleryProtocol {
     
     func successfulFetchPhotos(photos: [Photo]) {
+        self.isLoading = false
         DispatchQueue.main.async {
         self.activityIndicator.stopAnimating()
-        Service.shared.photos = photos
+        Service.shared.photos += photos
         self.collectionView.reloadData()
         }
     }

@@ -16,6 +16,7 @@ struct Service {
     
     let baseURL = URL(string: URLs.BaseUrl)!
     var photos: [Photo] = []
+    var page: Int = 1
     
     func fetchPhotos(success: @escaping(_ photos: [Photo]) -> (), failure: @escaping(_ errorResponse: ErrorMessage)-> ()){
         
@@ -26,7 +27,7 @@ struct Service {
             ParameterKeys.method: ParameterKeys.methodSearch,
             ParameterKeys.api_key: ApiValue.ApiKey,
             ParameterKeys.tags: ParameterKeys.tagKitten,
-            ParameterKeys.page: "1",
+            ParameterKeys.page: String(Service.shared.page),
             ParameterKeys.format: ParameterKeys.json,
             ParameterKeys.nojsoncallback: "1"
         ]
