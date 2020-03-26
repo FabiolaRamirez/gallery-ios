@@ -10,7 +10,7 @@ import Foundation
 
 protocol GalleryPresenterDelegate {
     func fetchPhotos()
-    func getSizes(_ row: Int, cell: PhotoCollectionViewCell, photos: [Photo])
+    func getSizes(_ row: Int, cell: PhotoCollectionViewCell)
 }
 
 protocol GalleryProtocol: AnyObject {
@@ -36,10 +36,10 @@ struct GalleryPresenter: GalleryPresenterDelegate {
         })
     }
     
-    func getSizes(_ row: Int, cell: PhotoCollectionViewCell, photos: [Photo]) {
-        var photo = photos[row]
+    func getSizes(_ row: Int, cell: PhotoCollectionViewCell) {
+        let photo = Service.shared.photos[row]
         Service.shared.getSizes(photoId: photo.id!, success: {(response) in
-            photo.sizes = response
+            Service.shared.photos[row].sizes = response
             cell.initWithData(photo)
         }, failure: {(error: ErrorMessage) in
             cell.initWithData(photo)

@@ -14,7 +14,6 @@ class GalleryViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var collectionViewFlowLayout: UICollectionViewFlowLayout!
     let cellIdentifier = "photoCellId"
-    var photos: [Photo] = []
     var galleryPresenter: GalleryPresenterDelegate?
     
     
@@ -31,7 +30,7 @@ class GalleryViewController: UIViewController {
     }
     
     func getSizes(_ row: Int, cell: PhotoCollectionViewCell) {
-        galleryPresenter?.getSizes(row, cell: cell, photos: self.photos)
+        galleryPresenter?.getSizes(row, cell: cell)
     }
     
     func setup() {
@@ -68,20 +67,20 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        return Service.shared.photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         print("++++++++++++++++ \(indexPath.row)")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! PhotoCollectionViewCell
-        let photo = photos[indexPath.row]
+        let photo = Service.shared.photos[indexPath.row]
         cell.initWithData(photo)
         getSizes(indexPath.row, cell: cell)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let photo = photos[indexPath.row]
+        let photo = Service.shared.photos[indexPath.row]
         showPhotoDetail(photo: photo)
     }
     
@@ -98,7 +97,7 @@ extension GalleryViewController: GalleryProtocol {
     func successfulFetchPhotos(photos: [Photo]) {
         DispatchQueue.main.async {
         self.activityIndicator.stopAnimating()
-        self.photos = photos
+        Service.shared.photos = photos
         self.collectionView.reloadData()
         }
     }
