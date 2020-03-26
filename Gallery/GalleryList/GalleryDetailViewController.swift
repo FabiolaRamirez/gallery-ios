@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 
+
 class GalleryDetailViewController: UIViewController {
     
     

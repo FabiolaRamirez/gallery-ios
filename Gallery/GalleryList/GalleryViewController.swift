@@ -9,7 +9,7 @@
 import UIKit
 
 class GalleryViewController: UIViewController {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var collectionViewFlowLayout: UICollectionViewFlowLayout!
@@ -37,6 +37,12 @@ class GalleryViewController: UIViewController {
     func setup() {
         self.navigationItem.title = "Gallery".localized
         self.galleryPresenter = GalleryPresenter(view: self)
+        
+        let search = UISearchController(searchResultsController: nil)
+        search.obscuresBackgroundDuringPresentation = false
+        search.searchBar.placeholder = "Type Something to Search".localized
+        navigationItem.searchController = search
+        search.searchBar.delegate = self
     }
     
     func setupCells() {
@@ -61,7 +67,7 @@ class GalleryViewController: UIViewController {
             collectionView.setCollectionViewLayout(collectionViewFlowLayout, animated: true)
         }
     }
-
+    
 }
 
 extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -94,7 +100,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
-
+        
         if (offsetY > contentHeight - scrollView.frame.height * 4) && !isLoading {
             print("load moree.................")
             Service.shared.page += 1
@@ -109,15 +115,15 @@ extension GalleryViewController: GalleryProtocol {
     func successfulFetchPhotos(photos: [Photo]) {
         self.isLoading = false
         DispatchQueue.main.async {
-        self.activityIndicator.stopAnimating()
-        Service.shared.photos += photos
-        self.collectionView.reloadData()
+            self.activityIndicator.stopAnimating()
+            Service.shared.photos += photos
+            self.collectionView.reloadData()
         }
     }
     
     func failureFetchPhotos(message: String) {
         DispatchQueue.main.async {
-        self.activityIndicator.stopAnimating()
+            self.activityIndicator.stopAnimating()
             print("wwwwwww: \(message)")
             self.showSimpleAlert(title: "", message: message)
         }
@@ -127,4 +133,14 @@ extension GalleryViewController: GalleryProtocol {
         self.activityIndicator.startAnimating()
     }
     
+}
+
+extension GalleryViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        Service.shared.page = 1
+        Service.shared.query = searchBar.text
+        Service.shared.photos = []
+        fetchPhotos()
+    }
 }

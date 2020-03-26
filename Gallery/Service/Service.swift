@@ -17,16 +17,16 @@ struct Service {
     let baseURL = URL(string: URLs.BaseUrl)!
     var photos: [Photo] = []
     var page: Int = 1
+    var query: String?
     
     func fetchPhotos(success: @escaping(_ photos: [Photo]) -> (), failure: @escaping(_ errorResponse: ErrorMessage)-> ()){
-        
-        
+    
         var photosURL = baseURL.appendingPathComponent(URLs.Path)
         
         let query: [String: String] = [
             ParameterKeys.method: ParameterKeys.methodSearch,
             ParameterKeys.api_key: ApiValue.ApiKey,
-            ParameterKeys.tags: ParameterKeys.tagKitten,
+            ParameterKeys.tags:  Service.shared.query ?? ParameterKeys.tagKitten,
             ParameterKeys.page: String(Service.shared.page),
             ParameterKeys.format: ParameterKeys.json,
             ParameterKeys.nojsoncallback: "1"
