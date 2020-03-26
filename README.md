@@ -1,6 +1,6 @@
 # Gallery iOS
 
-A photo gallery iOS application. The user can search not only with tag kitten but also with others like dogs, rabbits, and so on.
+A photo gallery iOS application. The user can search not only images types with tag kitten but also with others like dogs, rabbits, and so on.
 
 - This app uses Flickr API
 - MVP
