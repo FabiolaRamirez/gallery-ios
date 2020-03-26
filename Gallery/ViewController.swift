@@ -13,16 +13,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        getList()
     }
-
-    func getList() {
-        Service.sharedInstance.fetchPhotos(success: {(photoResponse: [Photo]) in
-            print("photosList: \(photoResponse)")
-        }, failure: {(messaje: ErrorMessage) in
-            print("error: \(messaje)")
-        })
-    }
-
 }
 

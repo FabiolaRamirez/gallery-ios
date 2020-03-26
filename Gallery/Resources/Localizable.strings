@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  Gallery
+
+  Created by Fabiola Ramirez on 3/25/20.
+  Copyright © 2020 Fabiola Ramirez. All rights reserved.
+*/
+
+
+//Alerts
+"Ok";
+
+//Alerts
+"NoConnectionError" = "Looks like you have an unstable network, please try again later";
+"StatusCodeError" = "Your Request Returned A Status Code Other Than 2..";
+"NoFoundError" = "No Data Was Returned By The Request!";
+"UnableToParse" = "Could not Parse The Data As JSON";
+"UnableToConvert" = "Can not convert as a Dictionary";
+"NoKeyFound" = "Cannot find Key Results In parsedResult";
+
+//Navigation Titles
+"Gallery";
+
+//Textfield Placeholder
+"Type Something to Search";
+
+
